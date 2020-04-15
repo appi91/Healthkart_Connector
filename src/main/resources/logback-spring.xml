@@ -1,0 +1,36 @@
+<configuration>
+
+    <property name="LOG_HOME" value="logs"/>
+    <property name="LOG_FILE" value="hkConnector"/>
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [[%thread-%X{thread_id}]-[${springAppName}]-[%X{traceId}]-[%X{spanId}]] %-5level %logger{36} - %msg%n</Pattern>
+<!--                %green(%d{ISO8601}) %highlight(%-5level) [%blue(%t)-%green(%X{thread_id})] %msg%n%throwable-->
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${LOG_FILE}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [[%thread-%X{thread_id}]-[${springAppName}]-[%X{traceId}]-[%X{spanId}]] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_HOME}/${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

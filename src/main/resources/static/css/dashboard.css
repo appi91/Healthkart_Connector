@@ -1,0 +1,297 @@
+body *{
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #64798f1f;
+  position: relative;
+}
+
+.logout-cont{
+    margin: 10px;
+    justify-content: space-between;
+}
+
+.logout-cont .name{
+    margin: 5px 0;
+}
+
+.logout-cont .logout-btn{
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+}
+
+.logout-cont .logout-btn:hover {
+    box-shadow: 3px 4px 9px #000;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 15px;
+  background-color: #fff;
+  margin: 15px 10px;
+  border: 1px solid #000;
+}
+.hide {
+  display: none;
+}
+input.custom {
+  display: block;
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 300px;
+  border: 2px solid #64798f1f;
+}
+input.custom::placeholder {
+  color: #8e8d8d;
+}
+
+textarea.custom{
+  padding: 5px;
+  border-radius: 5px;
+  width: 97%;
+  max-width: 500px;
+  min-height: 100px;
+  max-height: 200px;
+  border: 2px solid #64798f1f;
+}
+
+button.custom {
+  min-width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 0;
+  padding: 5px;
+  /* border: 2px solid #64798f1f; */
+}
+select.custom {
+  min-width: 314px;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 4px;
+  border: 2px solid #64798f1f;
+}
+
+button.big{
+  padding: 10px;
+}
+button.active{
+  background: blue;
+  color: #fff;
+  border: black;
+  font-weight: bold;
+}
+button.custom.big:hover {
+    box-shadow: 3px 4px 9px #000;
+}
+
+.flex {
+  display: flex;
+}
+.flex-1 {
+  flex: 1;
+}
+.border-black {
+  border: 1px solid #000;
+  padding: 5px;
+}
+.float-cntnr {
+  display: inline-block;
+  width: 100%;
+}
+.float-cntnr button:first-child {
+  float: left;
+}
+.float-cntnr button:nth-child(2) {
+  float: right;
+}
+.channel-options .inputs * {
+  margin-right: 10px;
+  justify-content: space-between;
+}
+.add-btn {
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.add-btn:hover {
+  box-shadow: 1px 5px 11px #ccc;
+}
+
+.remove-column{
+    margin: 10px 0;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 5px;
+    margin-right: 0 !important;
+}
+
+.remove-column:hover {
+  box-shadow: 1px 5px 11px #ccc;
+}
+
+.bulk-data-form{
+    margin-top: 15px;
+}
+
+/* .bulk-data-form .inputs:nth-child(2) .remove-column {
+     display: none;
+} */
+
+.border-top-silver {
+  border-top: 1px solid #64798f1f;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+.button-code{
+  padding: 5px;
+}
+.tabs button{
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 10px 0;
+}
+.tabs button.active{
+  background: #000;
+}
+
+table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th{
+    border: 1px solid #eee;
+    text-align: left;
+    padding: 8px;
+    max-width: 200px;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #dddddd;
+}
+
+table thead tr {
+    background-color: #ffffff;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+.division-right{
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+
+.loading{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #06060614;
+    top: 0;
+    left: 0;
+}
+
+.loading h2{
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    text-align: center;
+}
+
+.font-16{
+    font-size: 16px;
+}
+
+.font-bold{
+    font-weight: bold;
+}
+
+.font-normal{
+    font-weight: normal;
+}
+
+[data-js=showMore]{
+    font-size: 15px;
+}
+
+.view-bulk-list tbody tr:not(.child){
+    background-color: #ffffff;
+}
+
+.child-row{
+    background: #ccc !important;
+}
+
+textarea.zero-height{
+    height: 0px;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.width-100{
+    max-width: 100px;
+}
+
+label{
+    display: block;
+    margin-top: 10px;
+}
+
+.info-tag{
+    min-height: 180px !important;
+}
+
+.create-process textarea{
+    max-width: 97%;
+    display: block;
+}
+
+.search-box .search-type{
+    margin-left: 50px;
+}
+
+.search-box .search-type p{
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.search-box .search-type ul{
+    list-style-type: none;
+    margin: 5px 0;
+}
+
+.search-box .search-type ul li{
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+li.search-by:hover {
+    box-shadow: 1px 2px 11px #000;
+}
+
+.search-box .search-type ul li.active{
+    border: 1px solid #000;
+}
+
+span.hover-me:hover .child {
+    display: block;
+    position: absolute;
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}

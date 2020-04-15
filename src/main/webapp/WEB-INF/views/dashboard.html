@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html>
+  <head>
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/dashboard.css}" >
+    <style>
+        .hover-me-parent{
+            position: relative;
+            border-radius: 50%;
+            border: 1px solid;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .hover-me-parent:hover .child-hover-text {
+            display: block;
+            position: absolute;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            max-height: 200px;
+            overflow: auto;
+        }
+        .hide-me-now{
+          display: none;
+        }
+      </style>
+  </head>
+  <body>
+  <div class="logout-cont flex">
+      <h3 class="name">HK Connector</h3>
+      <div class="logout" th:fragment="logout" sec:authorize="isAuthenticated()">
+        <form action="#" th:action="@{/logout}" method="post">
+          <input type="submit" class="logout-btn cursor" value="Logout" />
+        </form>
+      </div>
+    </div>
+    <div class="app">
+      <div class="dashboard-container float-cntnr">
+        <button type="button" class="custom big main-menu active" data-js="create">Channel</button>
+        <button type="button" class="custom big main-menu" data-js="bulk">
+          Bulk process configuration
+        </button>
+      </div>
+      <div data-js="channel-form" class="half">
+        <form
+          name="create-channel-form"
+          data-js="create-channel-form"
+          class="border-top-silver create-channel-form"
+          method="post"
+        >
+          <div class="flex tabs">
+            <button type="button" class="custom flex-1 big active" data-js="channel-switch-create" >Create</button>
+            <button type="button" class="custom flex-1 big" data-js="channel-switch-list" >View</button>
+          </div>
+          <div class="border-top-silver" data-js="create-channel">
+            <div class="flex" >
+              <div class="flex-1">
+                <b>Create channel</b>
+                <input name="name" class="custom" placeholder="Channel name" />
+                <input
+                        name="channelEndPoint"
+                        class="custom"
+                        placeholder="Channel end point"
+                />
+<!--                <input type="hidden" name="id" value="" data-js="edit-id" />-->
+                <button type="button" class="custom" data-js="sendChannelData">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="border-top-silver hide" data-js="view-channel-list">
+          <p>Channels available</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Channel Name</th>
+                <th>End point</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody> </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="hide" data-js="bulk-form">
+        <div class="flex tabs">
+            <button type="button" class="custom flex-1 big active" data-js="bulk-switch-config" >Create</button>
+            <button type="button" class="custom flex-1 big" data-js="bulk-switch-list" >View</button>
+            <button type="button" class="custom flex-1 big active hide" data-js="edit-bulk" >Edit</button>
+        </div>
+        <div class="channel-options border-top-silver" data-js="bulk-configuration">
+          <form name="bulk-process" data-js="bulk-process-form" method="post">
+            <b>Bulk process configuration</b>
+            <div class="flex inputs">
+              <div class="flex-1">
+                <div class="flex">
+                  <label>Channel list</label>
+                  <select name="channelId" class="custom" data-js="select-channel" >
+                  </select>
+                </div>
+                <div class="flex">
+                  <label>Button name</label>
+                  <input name="buttonName" class="custom" placeholder="Enter button name" />
+                </div>
+                <div class="flex">
+                  <label>Target process url</label>
+                  <input name="targetProcessingUri" class="custom" placeholder="Enter url" />
+                </div>
+                <div class="flex">
+                  <label>Sheet name</label>
+                  <input name="sheetName" class="custom" placeholder="Enter sheet name" />
+                </div>
+                <div class="flex">
+                  <label>State param</label>
+                  <input name="stateParam" class="custom" placeholder="Enter state param" />
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="flex">
+                  <label>Info tags</label>
+                  <textarea name="infoTag" class="custom info-tag" placeholder="Enter info" data-js="info-tag" ></textarea>
+                </div>
+              </div>
+            </div>
+          </form>
+          <form name="bulk-data-form" class="bulk-data-form" data-js="bulk-data-form">
+            <b>Bulk column details</b>
+            <button type="button" class="add-btn" data-js="addMore">+</button>
+          </form>
+          <div >
+            <label>Send to</label>
+            <textarea class="custom" data-js="toEmail" placeholder="Please enter emial id's Comma(,) seperated"></textarea>
+          </div>
+          <button type="button" class="custom" data-js="sendBulkData">
+            Submit
+          </button>
+
+          <div class="border-top-silver"  >
+            <div class="flex">
+              <div class="flex-1 division-right create-process hide" data-js="createProcess">
+                <h3>Process button</h3>
+                <div data-js="code-area" >
+                  <p><b>Html content for button</b></p>
+                  <textarea name="code" class="custom" data-js="process-btn"></textarea>
+                  <button type="button" class="custom" data-js="clickMeToCopy">Copy button HTML</button>
+                </div>
+                <div data-js="code-area-js" >
+                  <p><b>JS content for butview-bulk-listton</b></p>
+                  <textarea name="code" class="custom" data-js="process-js-btn"></textarea>
+                  <button type="button" class="custom" data-js="clickMeToCopy">Copy button JS</button>
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="button-code" data-js="buttonCode"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="channel-options border-top-silver hide" data-js="edit-bulk-configuration">
+          <form name="bulk-process" data-js="bulk-process-form" method="post">
+            <b>Bulk process configuration</b>
+            <div class="flex inputs">
+              <div class="flex-1">
+                <div class="flex">
+                  <label>Channel list</label>
+                  <select name="channelId" class="custom" data-js="select-channel" >
+                  </select>
+                </div>
+                <div class="flex">
+                  <label>Button name</label>
+                  <input name="buttonName" class="custom" placeholder="Enter button name" />
+                </div>
+                <div class="flex">
+                  <label>Target process url</label>
+                  <input name="targetProcessingUri" class="custom" placeholder="Enter url" />
+                </div>
+                <div class="flex">
+                  <label>Sheet name</label>
+                  <input name="sheetName" class="custom" placeholder="Enter sheet name" />
+                </div>
+                <div class="flex">
+                  <label>State param</label>
+                  <input name="stateParam" class="custom" placeholder="Enter state param" />
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="flex">
+                  <label>Info tags</label>
+                  <textarea name="infoTag" class="custom info-tag" placeholder="Enter info" data-js="info-tag" ></textarea>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="editId" value="" />
+          </form>
+          <form name="bulk-data-form" class="bulk-data-form" data-js="bulk-data-form">
+            <b>Bulk column details</b>
+            <button type="button" class="add-btn" data-js="addMore">+</button>
+          </form>
+          <div >
+            <label>Send to</label>
+            <textarea class="custom" data-js="toEmail" placeholder="Please enter emial id's Comma(,) seperated"></textarea>
+          </div>
+          <button type="button" class="custom" data-js="editBulkData">
+            Update
+          </button>
+          <button type="button" class="custom" data-js="cancelEditBulkData">
+            Cancel
+          </button>
+
+          <div class="border-top-silver"  >
+            <div class="flex">
+              <div class="flex-1 division-right create-process hide" data-js="createProcess">
+                <h3>Process button</h3>
+                <div data-js="code-area" >
+                  <p><b>Html content for button</b></p>
+                  <textarea name="code" class="custom" data-js="process-btn"></textarea>
+                  <button type="button" class="custom" data-js="clickMeToCopy">Copy button HTML</button>
+                </div>
+                <div data-js="code-area-js" >
+                  <p><b>JS content for button</b></p>
+                  <textarea name="code" class="custom" data-js="process-js-btn"></textarea>
+                  <button type="button" class="custom" data-js="clickMeToCopy">Copy button JS</button>
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="button-code" data-js="buttonCode"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-top-silver view-bulk-list hide" data-js="view-bulk-list">
+          <div class="flex search-box">
+            <input class="custom" placeholder="Search here" data-js="search"/>
+            <div class="flex search-type">
+              <p>Search by: </p>
+              <ul class="flex">
+                <li class="search-by cursor active" data-by="id">Button Id</li>
+                <li class="search-by cursor active" data-by="buttonName">Button name</li>
+              </ul>
+            </div>
+<!--            <button type="button" class="custom">Reset data</button>-->
+          </div>
+          <p data-js="current-page"></p>
+          <table>
+            <thead>
+            <tr>
+              <th>Button name/Sheet name/URI</th>
+<!--              <th>Target processing uri</th>-->
+<!--              <th>Sheet name</th>-->
+<!--              <th>Info tag</th>-->
+              <th>State param</th>
+              <th>Send updates to</th>
+              <th>Button</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <p data-js="current-page"></p>
+          <div class="pagination ">
+            <button type="button" class="custom" data-js="prev" >Prev</button>
+            <button type="button" class="custom" data-js="next" >Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <template id="template-hover"><style>.hover-me-parent{position: relative;border-radius: 50%;border: 1px solid;width: 15px;height: 15px;text-align: center;display: inline-block;margin-left: 5px;font-size: 12px;font-weight: bold;}.hover-me-parent:hover .child-hover-text {display: block;position: absolute;background: #000;color: #fff;padding: 10px;border-radius: 5px;top: -40px;left: 50%;transform: translateX(-50%);width: 200px;max-height: 200px;overflow: auto;}.hide-me-now{display: none;}</style><div class="hover-me-parent">i<span class="hide-me-now child-hover-text"></span></div>
+    </template>
+    <div class="loading hide">
+      <h2>Loading...</h2>
+    </div>
+  </body>
+  <script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+  <script type="text/javascript" th:src="@{/js/dashboard.js}" ></script>
+</html>

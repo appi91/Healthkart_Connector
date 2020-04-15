@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <!-- <link th:href="@{/css/styles.css}" rel="stylesheet"> -->
+        <style>
+        body {
+            background-color: lightGray;
+        }
+
+        .app{
+            height: 100vh;
+        }
+
+        .login-container{
+            width: 250px;
+            margin: auto;
+            padding: 25px 0;
+
+            top: 50%;
+            transform: translateY(-50%);
+            position: relative;
+            background: #fff;
+            border-radius: 5px;
+            border: 1px solid #000;
+        }
+
+        /* .login-container:hover, .login-container:active{
+            border: 3px solid #000;
+            transition: border-width 0.6s linear;
+            border-radius: 5px;
+        } */
+
+        .text-center{
+            text-align: center;
+        }
+
+        .login-container form input{
+            display: block;
+            margin: 0 auto;
+            padding: 5px;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+
+        .login-container form input[type=submit]{
+            background: #000;
+            border-color: #000;
+            color: #fff;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+
+        .login-container form input[type=submit]:hover{
+            box-shadow: 3px 4px 9px #000;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <span th:text="@{${error}}"/>
+            <div class="login-container">
+                <h2 class="text-center">HK Connector</h2>
+                <h2 class="text-center">Login page</h2>
+                <form action="#" th:action="@{/loginPage}" method="post">
+                    <input type="text" name = "username" placeholder="Username" />
+                    <input type="password" name= "password" placeholder="Password" />
+                    <input type="submit" value="submit" />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

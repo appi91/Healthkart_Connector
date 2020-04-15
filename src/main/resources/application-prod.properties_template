@@ -1,0 +1,19 @@
+#Environment
+profile.name=prod
+
+#Server
+server.port=8443
+server.servlet.context-path=/hkc
+
+#mongodb
+spring.data.mongodb.host=xxxx
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=HKConnector
+
+endpoint.hkc=https://hkc.healthkart.com
+
+clientId = aasdsadsadsad
+
+spring.application.name = HkConnector
+
+#Credentials
